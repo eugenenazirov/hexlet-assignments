@@ -6,17 +6,17 @@ import java.util.ArrayList;
 
 // BEGIN
 public class App {
-    public static List<Map<String, String>> findWhere(
-            List<Map<String, String>> booksList,
-            Map<String, String> search
+    public static <K, V> List<Map<K, V>> findWhere(
+            List<Map<K, V>> booksList,
+            Map<K, V> search
     ) {
         if (search.isEmpty()) {
             return new ArrayList<>();
         }
 
-        List<Map<String, String>> result = new ArrayList<>();
-        for (Map<String, String> book : booksList) {
-            if (containsAllSearchedFields(book, search)) {
+        List<Map<K, V>> result = new ArrayList<>();
+        for (Map<K, V> book : booksList) {
+            if (App.containsAllSearchedFields(book, search)) {
                 result.add(book);
             }
         }
@@ -24,11 +24,11 @@ public class App {
         return result;
     }
 
-    private static boolean containsAllSearchedFields(
-            Map<String, String> book,
-            Map<String, String> search
+    private static <K, V> boolean containsAllSearchedFields(
+            Map<K, V> book,
+            Map<K, V> search
     ) {
-        for (Map.Entry<String, String> pair : search.entrySet()) {
+        for (Map.Entry<K, V> pair : search.entrySet()) {
             if (!book.containsKey(pair.getKey()) || !book.containsValue(pair.getValue())) {
                 return false;
             }
