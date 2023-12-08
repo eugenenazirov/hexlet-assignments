@@ -24,8 +24,8 @@ public class ReversedSequence implements CharSequence {
         return data;
     }
 
-    private String reverse(String data) {
-        char[] chars = data.toCharArray();
+    private String reverse(String input) {
+        char[] chars = input.toCharArray();
         for (int i = 0; i < chars.length / 2; i++) {
             char tmp = chars[i];
             chars[i] = chars[chars.length - i - 1];
